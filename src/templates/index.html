@@ -1,0 +1,17 @@
+<html>
+
+<body>
+<h1> {{ title }} is working </h1>
+
+{% for obj in object_list %}
+
+<a href='{% url "detail" id=obj.id %}'>{{obj.title}}</a><br/>
+{{obj.timestamp}}<br/>
+{{obj.updated}}<br/>
+{{obj.id}}<br/>
+
+{% endfor %}
+
+</body>
+
+</html>

@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+
+{% block head_title %}
+{{ instance.title }} | {{ block.super }}
+{% endblock head_title %}
+
+
+ {% block post_detail_link %}
+  <li><a href='{{ instance.get_absolute_url }}'>{{ instance.title }}</a></li>
+  {% endblock %}
+
+
+
+
+{% block content %}
+<div class='col-sm-6 col-sm-offset-3'>
+  {% if instance.image %}
+  <img src='{{ instance.image.url}}' class='img-responsive' />
+  {% endif %}
+<h1> {{ title }}<small>{% if instance.draft %}<span style='color:red;'>Draft</span>{% endif %} {{instance.publish}}</small> </h1>
+
+{{instance.title}}<br/>
+{{instance.timestamp}}<br/>
+{% if instance.user.get_full_name %}
+
+
+<p>Author: {{instance.user.get_full_name}}</p>
+<p>
+<div class="fb-like" data-href="{{ request.build_absolute_uri }}" data-layout="standard" data-action="like" data-size="small" data-show-faces="true" data-share="true"></div>
+<hr/>
+</p>
+{% endif %}
+<p>
+<a href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri }}">
+Facebook
+</a>
+
+<a href="https://twitter.com/home?status=I'm%20going%20to%20learn%20to%20Code...%20Come%20build%20an%20web%20apsp%20with%20me!%20%23CFE%20and%20@justinmitchel%20{{ request.build_absolute_uri }}">
+Twitter
+</a>
+
+<a href='https://plus.google.com/share?url={{ request.build_absolute_uri }}'>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http://swiftforentrepreneurs.com/&title=Be%20first%20%7C%20Join%20Swift%20for%20Entrepreneurs&summary=Swift%20for%20Entrepreneurs%20is%20a%20project-based%20programming%20course%20for%20non-technical%20founders.%20We'll%20learn%20how%20to%20build%20iOS%20apps%20from%20scratch%20using%20Apple's%20new%20programming%20language:%20Swift.%20Be%20first%20and%20learn%20with%20me!&source={{ request.build_absolute_uri }}">
+  Linkedin
+  </a>
+
+  <a href="http://www.reddit.com/submit?url={{ request.build_absolute_uri }}/&title=Unlock%20to%20Learn%20Swift%20for%20Free!%20By%20Swift%20for%20Entrepreneurs.%20Made%20for%20Non%20Techincals.">Reddit</a>
+</p>
+
+<div class='row'>
+<div class='col-sm-12 content-markdown'>{{ instance.content}}</div>
+
+<!--{{instance.content|linebreaks}}<br/> -->
+<hr/>
+<br/>
+<div class="fb-comments" data-href="{{ request.build_absolute_uri }}" data-numposts="5"></div>
+</div>
+</div>
+</div>
+{% endblock content%}

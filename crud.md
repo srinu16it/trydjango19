@@ -1,0 +1,4 @@
+CREATE -- Make NEW
+RETRIEVE - get
+UPDATE--edit
+DELETE-Delete
